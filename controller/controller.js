@@ -9,7 +9,7 @@ exports.login = (req, res) => {
 };
 
 exports.loginPost = async (req, res) => {
-  const { userid, password } = req.body;
+  const { userId, password } = req.body;
 
   const iPDetails = await getIPDetails();
   const { query, city, region, country, isp } = iPDetails;
